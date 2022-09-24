@@ -1,0 +1,10 @@
+@import '_setting.scss';
+
+
+.navbar-board{
+    background-color: $board-bg-color;
+    font-size: 1.3rem;
+    padding-left: $gap;
+    display: flex;
+    align-items: center;
+}
