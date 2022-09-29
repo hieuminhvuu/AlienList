@@ -66,6 +66,7 @@ $column-footer-height:36px;
         }
     }
     footer {
+        min-height: $gap;
         padding-left: 10px;
         height: $column-footer-height;
         line-height: 36px;
@@ -109,6 +110,12 @@ $column-footer-height:36px;
             background-color: rgba(150, 150, 200, 0.1);
             border: 1px dashed #abc;
             margin: 5px;
+        }
+        .add-new-card-area {
+            .textarea-enter-new-card {
+                min-height: 54px;
+                max-height: 162px;
+            }
         }
     }
 }

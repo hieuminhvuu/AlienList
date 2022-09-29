@@ -18,11 +18,15 @@ import {
 function BoardContent() {
     const [board, setBoard] = useState({});
     const [columns, setColumns] = useState({});
+
     const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
+    const toggleOpenNewColumnForm = () => {
+        setOpenNewColumnForm(!openNewColumnForm);
+    };
 
     const newColumnInputRef = useRef(null);
-    const [newColumnTitle, setNewColumnTitle] = useState("");
 
+    const [newColumnTitle, setNewColumnTitle] = useState("");
     const openNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
 
     useEffect(() => {
@@ -77,10 +81,6 @@ function BoardContent() {
             flushSync(() => setColumns(newColumns));
         }
     };
-
-    function toggleOpenNewColumnForm() {
-        setOpenNewColumnForm(!openNewColumnForm);
-    }
 
     function addNewColumn() {
         if (!newColumnTitle) {
@@ -151,6 +151,7 @@ function BoardContent() {
                     </Draggable>
                 ))}
             </Container>
+
             <BootstrapContainer className="trello-container">
                 {!openNewColumnForm && (
                     <Row>
@@ -188,7 +189,7 @@ function BoardContent() {
                                 Add column
                             </Button>
                             <span
-                                className="cancel-new-column"
+                                className="cancel-icon"
                                 onClick={toggleOpenNewColumnForm}
                             >
                                 <i className="fa fa-trash icon" />
