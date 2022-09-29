@@ -34,6 +34,13 @@ function Column(props) {
     const toggleOpenNewCardForm = () => {
         setOpenNewCardForm(!openNewCardForm);
     };
+    const handleOpenNewCardForm = () => {
+        if (!openNewCardForm) {
+            setOpenNewCardForm(true);
+        } else {
+            newCardTextareaRef.current.focus();
+        }
+    };
 
     const handleColumnTitleBlur = () => {
         const newColumn = {
@@ -111,7 +118,9 @@ function Column(props) {
                             className="dropdown-btn"
                         ></Dropdown.Toggle>
                         <Dropdown.Menu>
-                            <Dropdown.Item>Add card</Dropdown.Item>
+                            <Dropdown.Item onClick={handleOpenNewCardForm}>
+                                Add card
+                            </Dropdown.Item>
                             <Dropdown.Item onClick={toggleShowConfirmModal}>
                                 Remove column
                             </Dropdown.Item>
