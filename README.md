@@ -1,3 +1,3 @@
-# MERN STACK APP
+# TO DO LIST APP
 
 Update later
