@@ -14,10 +14,11 @@ import {
     Form,
     Button,
 } from "react-bootstrap";
+import { fetchBoardDetails } from "actions/ApiCall";
 
 function BoardContent() {
-    const [board, setBoard] = useState({});
-    const [columns, setColumns] = useState({});
+    const [board, setBoard] = useState([]);
+    const [columns, setColumns] = useState([]);
 
     const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
     const toggleOpenNewColumnForm = () => {
@@ -31,15 +32,27 @@ function BoardContent() {
 
     useEffect(() => {
         const boardFromDB = initialData.boards.find(
-            (board) => board.id === "board-1"
+            (board) => board._id === "board-1"
         );
-        if (boardFromDB) {
+        const boardId = "63400be50b441e5992c8316a";
+        fetchBoardDetails(boardId).then((board) => {
+            console.log(board);
             setBoard(boardFromDB);
-            setColumns(
-                mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "id")
-            );
-        }
+            setColumns(mapOrder(board.columns, board.columnOrder, "_id"));
+        });
     }, []);
+
+    // useEffect(() => {
+    //     const boardFromDB = initialData.boards.find(
+    //         (board) => board._id === "board-1"
+    //     );
+    //     if (boardFromDB) {
+    //         setBoard(boardFromDB);
+    //         setColumns(
+    //             mapOrder(boardFromDB.columns, boardFromDB.columnOrder, "_id")
+    //         );
+    //     }
+    // }, []);
 
     useEffect(() => {
         if (newColumnInputRef && newColumnInputRef.current) {
@@ -63,7 +76,7 @@ function BoardContent() {
         let newColumns = [...columns];
         newColumns = applyDrag(newColumns, dropResult);
         let newBoard = { ...board };
-        newBoard.columnOrder = newColumns.map((c) => c.id);
+        newBoard.columnOrder = newColumns.map((c) => c._id);
         newBoard.columns = newColumns;
         setColumns(newColumns);
         setBoard(newBoard);
@@ -75,9 +88,9 @@ function BoardContent() {
             dropResult.addedIndex !== null
         ) {
             let newColumns = [...columns];
-            let currentColumn = newColumns.find((c) => c.id === columnId);
+            let currentColumn = newColumns.find((c) => c._id === columnId);
             currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
-            currentColumn.cardOrder = currentColumn.cards.map((i) => i.id);
+            currentColumn.cardOrder = currentColumn.cards.map((i) => i._id);
             flushSync(() => setColumns(newColumns));
         }
     };
@@ -89,7 +102,7 @@ function BoardContent() {
         }
         const newColumnToAdd = {
             id: Math.random().toString(36).substring(2, 5), //5 random characters, will remove when we implement code api
-            boardId: board.id,
+            boardId: board._id,
             title: newColumnTitle.trim(),
             cardOrder: [],
             cards: [],
@@ -98,7 +111,7 @@ function BoardContent() {
         newColumns.push(newColumnToAdd);
 
         let newBoard = { ...board };
-        newBoard.columnOrder = newColumns.map((c) => c.id);
+        newBoard.columnOrder = newColumns.map((c) => c._id);
         newBoard.columns = newColumns;
 
         setColumns(newColumns);
@@ -108,11 +121,11 @@ function BoardContent() {
     }
 
     const onUpdateColumn = (newColumnToUpdate) => {
-        const columnIdToUpdate = newColumnToUpdate.id;
+        const columnIdToUpdate = newColumnToUpdate._id;
 
         let newColumns = [...columns];
         const columnIndexToUpdate = newColumns.findIndex(
-            (i) => i.id === columnIdToUpdate
+            (i) => i._id === columnIdToUpdate
         );
         if (newColumnToUpdate._destroy) {
             newColumns.splice(columnIndexToUpdate, 1);
@@ -121,7 +134,7 @@ function BoardContent() {
         }
 
         let newBoard = { ...board };
-        newBoard.columnOrder = newColumns.map((c) => c.id);
+        newBoard.columnOrder = newColumns.map((c) => c._id);
         newBoard.columns = newColumns;
 
         setColumns(newColumns);
