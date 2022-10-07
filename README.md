@@ -62,8 +62,6 @@ Images: https://unsplash.com/
 
 ### Main Board Task
 
-### Register - Login
-
 ![image](./public/img/Main%20board.png)
 
 ## License
