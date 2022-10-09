@@ -7,6 +7,7 @@ import { saveContentAfterPressEnter } from "utilities/contentEditable";
 import { selectAllInlineText } from "utilities/contentEditable";
 import { Button } from "react-bootstrap";
 import { cloneDeep } from "lodash";
+import { createNewCard, updateColumn } from "actions/ApiCall";
 
 import "./Column.scss";
 import ConfirmModal from "components/Common/ConfirmModal";
@@ -14,7 +15,7 @@ import ConfirmModal from "components/Common/ConfirmModal";
 import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 
 function Column(props) {
-    const { column, onCardDrop, onUpdateColumn } = props;
+    const { column, onCardDrop, onUpdateColumnState } = props;
     const cards = mapOrder(column.cards, column.cardOrder, "_id");
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal);
@@ -42,12 +43,19 @@ function Column(props) {
         }
     };
 
+    // Update column title
     const handleColumnTitleBlur = () => {
-        const newColumn = {
-            ...column,
-            title: columnTitle,
-        };
-        onUpdateColumn(newColumn);
+        if (columnTitle !== column.title) {
+            const newColumn = {
+                ...column,
+                title: columnTitle,
+            };
+            // Call api update
+            updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+                updatedColumn.cards = newColumn.cards;
+                onUpdateColumnState(updatedColumn);
+            });
+        }
     };
 
     useEffect(() => {
@@ -61,13 +69,17 @@ function Column(props) {
         }
     }, [openNewCardForm]);
 
+    // Remove column
     const onConfirmModalAction = (type) => {
         if (type === MODAL_ACTION_CONFIRM) {
             const newColumn = {
                 ...column,
                 _destroy: true,
             };
-            onUpdateColumn(newColumn);
+            // Call api update
+            updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+                onUpdateColumnState(updatedColumn);
+            });
         }
         toggleShowConfirmModal();
     };
@@ -78,19 +90,19 @@ function Column(props) {
             return;
         }
         const newCardToAdd = {
-            id: Math.random().toString(36).substring(2, 5), //5 random characters, will remove when we implement code api
             boardId: column.boardId,
             columnId: column._id,
             title: newCardTitle.trim(),
-            cover: null,
         };
-        let newColumn = cloneDeep(column);
-        newColumn.cards.push(newCardToAdd);
-        newColumn.cardOrder.push(newCardToAdd._id);
+        createNewCard(newCardToAdd).then((card) => {
+            let newColumn = cloneDeep(column);
+            newColumn.cards.push(card);
+            newColumn.cardOrder.push(card._id);
 
-        onUpdateColumn(newColumn);
-        setNewCardTitle("");
-        toggleOpenNewCardForm();
+            onUpdateColumnState(newColumn);
+            setNewCardTitle("");
+            toggleOpenNewCardForm();
+        });
     };
 
     return (
