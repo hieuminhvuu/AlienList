@@ -1,6 +1,21 @@
 import axios from "axios";
 import { API_ROOT } from "utilities/constans";
 
+export const check = async () => {
+    const request = await axios.get(`${API_ROOT}/v1/auth`);
+    return request.data;
+};
+
+export const login = async (data) => {
+    const request = await axios.post(`${API_ROOT}/v1/auth/login`, data);
+    return request.data;
+};
+
+export const register = async (data) => {
+    const request = await axios.post(`${API_ROOT}/v1/auth/register`, data);
+    return request.data;
+};
+
 export const updateBoard = async (id, data) => {
     const request = await axios.put(`${API_ROOT}/v1/boards/${id}`, data);
     return request.data;
