@@ -1,0 +1,39 @@
+@import '_setting.scss';
+@import "~bootstrap/scss/bootstrap";
+
+.auth-master {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: $app-main-text-color;
+    .container-auth {
+        max-width: 100%;
+        .left-col {
+            background-color: #277BC0;
+            img{
+                height: 100vh;
+            }
+        }
+        .right-col {
+            background-color: white;
+            .content-right {
+                margin: 10% 10%;
+                display: block;
+                align-items: center;
+                .logo-div {
+                    .logo {
+                        height: 60px;
+                        width: 60px;
+                    }
+                }
+                .content {
+                    font-weight: bold;
+                    font-size: 48px;
+                }
+                .sub-content {
+                }
+            }
+        }
+    }
+}
