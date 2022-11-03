@@ -5,6 +5,7 @@ import AlertMessage from "pages/Auth/AlertMessage";
 import axios from "axios";
 import { API_ROOT } from "utilities/constans";
 import { useHistory } from "react-router-dom";
+import validator from "email-validator";
 
 const RegisterForm = () => {
     let history = useHistory();
@@ -35,6 +36,14 @@ const RegisterForm = () => {
             setTimeout(() => setAlert(null), 5000);
             return;
         }
+        if (!validator.validate(email)) {
+            setAlert({
+                type: "danger",
+                message: "Email invalid!",
+            });
+            setTimeout(() => setAlert(null), 5000);
+            return;
+        }
         if (password.length < 6) {
             setAlert({
                 type: "danger",
@@ -49,7 +58,6 @@ const RegisterForm = () => {
             return;
         }
         try {
-            //register trong backend, thuc hien duoc thi sang login
             const res = await axios.post(`${API_ROOT}/v1/auth/register`, {
                 firstName,
                 lastName,
@@ -57,8 +65,11 @@ const RegisterForm = () => {
                 password,
             });
             if (res.data.success) {
-                console.log("cc");
-                history.push("/login");
+                setAlert({
+                    type: "success",
+                    message: res.data.message,
+                });
+                setTimeout(() => history.push("/login"), 2000);
             } else {
                 setAlert({
                     type: "danger",
