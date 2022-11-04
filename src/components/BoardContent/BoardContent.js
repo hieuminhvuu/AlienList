@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-//import { flushSync } from "react-dom";
 import Column from "components/Column/Column";
 import { mapOrder } from "utilities/sorts";
 import "./BoardContent.scss";
-//import { initialData } from "actions/initialData";
 import { isEmpty, cloneDeep } from "lodash";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "utilities/dragDrop";
