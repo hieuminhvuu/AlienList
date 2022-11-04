@@ -5,6 +5,7 @@ import Auth from "pages/Auth/Auth";
 import Landing from "pages/Auth/Landing";
 import AuthContextProvider from "contexts/AuthContext";
 import DashBoard from "pages/DashBoard/DashBoard";
+import Board from "pages/Board/Board";
 import ProtectedRoute from "actions/routing/ProtectedRoute";
 import BoardContentProvider from "contexts/BoardContext";
 
@@ -33,6 +34,11 @@ function App() {
                             exact
                             path="/dashboard"
                             component={DashBoard}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path="/dashboard/:id"
+                            component={Board}
                         />
                     </Switch>
                 </Router>

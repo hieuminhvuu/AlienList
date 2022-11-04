@@ -19,8 +19,11 @@ import {
     updateColumn,
     updateCard,
 } from "actions/ApiCall";
+import { useParams } from "react-router-dom";
 
 function BoardContent() {
+    let { id } = useParams();
+
     const [board, setBoard] = useState([]);
     const [columns, setColumns] = useState([]);
 
@@ -35,7 +38,7 @@ function BoardContent() {
     const openNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
 
     useEffect(() => {
-        const boardId = "63400be50b441e5992c8316a";
+        const boardId = id;
         fetchBoardDetails(boardId).then((board) => {
             setBoard(board);
             setColumns(mapOrder(board.columns, board.columnOrder, "_id"));
