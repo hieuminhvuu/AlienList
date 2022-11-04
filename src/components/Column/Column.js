@@ -105,6 +105,27 @@ function Column(props) {
         });
     };
 
+    // const onUpdateCardState = (newCardToUpdate) => {
+    //     const cardIdToUpdate = newCardToUpdate._id;
+
+    //     let newCards = [...cards];
+    //     const cardIndexToUpdate = newCards.findIndex(
+    //         (i) => i._id === cardIdToUpdate
+    //     );
+    //     if (newCardToUpdate._destroy) {
+    //         newCards.splice(cardIndexToUpdate, 1);
+    //     } else {
+    //         newCards.splice(cardIndexToUpdate, 1, newCardToUpdate);
+    //     }
+
+    //     let newColumn = { ...column };
+    //     newColumn.cardOrder = newCards.map((c) => c._id);
+    //     newColumn.cards = newCards;
+
+    //     setCards(newCards);
+    //     setColumn(newColumn);
+    // };
+
     return (
         <div className="column">
             <header className="column-drag-handle">
@@ -135,12 +156,6 @@ function Column(props) {
                             </Dropdown.Item>
                             <Dropdown.Item onClick={toggleShowConfirmModal}>
                                 Remove column
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Move all card in this column
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                                Archive all card in this column
                             </Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
