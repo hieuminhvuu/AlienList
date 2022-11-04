@@ -59,6 +59,7 @@ const AuthContextProvider = ({ children }) => {
             }
 
             await loadUser();
+
             return response.data;
         } catch (error) {
             if (error.response.data) return error.response.data;
@@ -66,8 +67,17 @@ const AuthContextProvider = ({ children }) => {
         }
     };
 
+    // Log out
+    const logoutUser = () => {
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+        dispatch({
+            type: "SET_AUTH",
+            payload: { isAuthenticated: false, user: null },
+        });
+    };
+
     // Context data
-    const authContextData = { loginUser, authState };
+    const authContextData = { loginUser, logoutUser, authState };
 
     // Return provider
     return (
