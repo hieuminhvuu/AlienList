@@ -12,6 +12,8 @@ import { saveContentAfterPressEnter } from "utilities/contentEditable";
 function Card(props) {
     const { card } = props;
 
+    const [cardTitleCancel, setCardTitleCancel] = useState("none");
+
     const [cardTitle, setCardTitle] = useState("");
     useEffect(() => {
         setCardTitle(card.title);
@@ -45,7 +47,7 @@ function Card(props) {
                 _destroy: true,
             };
             updateCard(card._id, newCard);
-            window.location.reload();
+            setCardTitleCancel("line-through");
         }
         toggleShowConfirmModal();
     };
@@ -63,6 +65,7 @@ function Card(props) {
             <div className="content">
                 <Form.Control
                     type="text"
+                    style={{ textDecorationLine: cardTitleCancel }}
                     className="trello-content-editable name-content"
                     spellCheck="false"
                     value={cardTitle}

@@ -8,6 +8,7 @@ import {
     // InputGroup,
     // FormControl,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
 
@@ -31,8 +32,16 @@ function AppBar() {
                                 <i className="fa fa-home" />
                             </div>
                             <div className="item boards">
-                                <i className="fa fa-columns" />
-                                &nbsp;&nbsp;<strong>Boards</strong>
+                                <Link
+                                    to="/dashboard"
+                                    style={{
+                                        color: "white",
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    <i className="fa fa-columns" />
+                                    &nbsp;&nbsp;<strong>Boards</strong>
+                                </Link>
                             </div>
                             {/* <div className="item search">
                                 <InputGroup className="group-search">

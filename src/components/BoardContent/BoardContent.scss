@@ -1,6 +1,7 @@
 @import '_setting.scss';
 
 .board-content{
+    padding-top: $gap;
     display: flex;
     height: $board-content-height;
     overflow-x: auto;
