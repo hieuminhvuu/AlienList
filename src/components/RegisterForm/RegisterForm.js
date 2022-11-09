@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
 import AlertMessage from "pages/Auth/AlertMessage";
 import axios from "axios";
 import { API_ROOT } from "utilities/constans";
 import { useHistory } from "react-router-dom";
 import validator from "email-validator";
+import "./RegisterForm.scss";
 
 const RegisterForm = () => {
     let history = useHistory();
@@ -84,75 +84,81 @@ const RegisterForm = () => {
     };
 
     return (
-        <div>
-            <Form onSubmit={register}>
+        <div className="container-register">
+            <h1>Register</h1>
+            <form onSubmit={register}>
                 <AlertMessage info={alert} />
-                <Form.Group>
-                    <label>First name :</label>
-                    <Form.Control
+                <div className="txt_field">
+                    <input
                         type="text"
-                        placeholder="First name"
-                        name="firstName"
                         required
+                        name="firstName"
                         value={firstName}
                         onChange={onChangeRegisterForm}
                     />
-                </Form.Group>
-                <Form.Group>
-                    <label>Last name :</label>
-                    <Form.Control
+                    <span></span>
+                    <label>First name</label>
+                </div>
+                <div className="txt_field">
+                    <input
                         type="text"
-                        placeholder="Last name"
-                        name="lastName"
                         required
+                        name="lastName"
                         value={lastName}
                         onChange={onChangeRegisterForm}
                     />
-                </Form.Group>
-                <Form.Group>
-                    <label>Email :</label>
-                    <Form.Control
+                    <span></span>
+                    <label>Last name</label>
+                </div>
+                <div className="txt_field">
+                    <input
                         type="text"
-                        placeholder="Email"
-                        name="email"
                         required
+                        name="email"
                         value={email}
                         onChange={onChangeRegisterForm}
                     />
-                </Form.Group>
-                <Form.Group>
-                    <label>Password :</label>
-                    <Form.Control
+                    <span></span>
+                    <label>Email</label>
+                </div>
+                <div className="txt_field">
+                    <input
                         type="password"
-                        placeholder="Password"
-                        name="password"
                         required
+                        name="password"
                         value={password}
                         onChange={onChangeRegisterForm}
                     />
-                </Form.Group>
-                <Form.Group>
-                    <label>Confirm password :</label>
-                    <Form.Control
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <div className="txt_field">
+                    <input
                         type="password"
-                        placeholder="Confirm password"
-                        name="confirmPassword"
                         required
+                        name="confirmPassword"
                         value={confirmPassword}
                         onChange={onChangeRegisterForm}
                     />
-                </Form.Group>
-                <Button variant="success" type="submit">
+                    <span></span>
+                    <label>Confirm password</label>
+                </div>
+                <button
+                    type="submit"
+                    variant="success"
+                    className="btn-register"
+                >
                     Register
-                </Button>
-            </Form>
-
-            <p>
-                Don't have an account ?
-                <Link to="/Login">
-                    <Button>Login</Button>
-                </Link>
-            </p>
+                </button>
+                <div className="signup_link">
+                    Already have account?
+                    <span>
+                        <Link to="/login">
+                            <p role="button">Login</p>
+                        </Link>
+                    </span>
+                </div>
+            </form>
         </div>
     );
 };

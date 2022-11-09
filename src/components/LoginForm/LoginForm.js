@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
 import AlertMessage from "pages/Auth/AlertMessage";
+import "./LoginForm.scss";
 
 const LoginForm = () => {
     // Context
@@ -38,42 +38,45 @@ const LoginForm = () => {
         }
     };
     return (
-        <div>
-            <Form onSubmit={login}>
+        <div className="container-login">
+            <h1>Login</h1>
+
+            <form onSubmit={login}>
                 <AlertMessage info={alert} />
-                <Form.Group>
-                    <label>Email</label>
-                    <Form.Control
+                <div className="txt_field">
+                    <input
                         type="text"
-                        placeholder="Email"
-                        name="email"
                         required
+                        name="email"
                         value={email}
                         onChange={onChangeLoginForm}
                     />
-                </Form.Group>
-                <Form.Group>
-                    <label>Password</label>
-                    <Form.Control
+                    <span></span>
+                    <label>Email</label>
+                </div>
+                <div className="txt_field">
+                    <input
                         type="password"
-                        placeholder="Password"
-                        name="password"
                         required
+                        name="password"
                         value={password}
                         onChange={onChangeLoginForm}
                     />
-                </Form.Group>
-                <Button variant="success" type="submit">
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <button type="submit" variant="success" className="btn-login">
                     Login
-                </Button>
-            </Form>
-
-            <p>
-                Don't have an account ?
-                <Link to="/register">
-                    <Button>Register</Button>
-                </Link>
-            </p>
+                </button>
+                <div className="signup_link">
+                    Not a member?
+                    <span>
+                        <Link to="/register">
+                            <p role="button">Register</p>
+                        </Link>
+                    </span>
+                </div>
+            </form>
         </div>
     );
 };
