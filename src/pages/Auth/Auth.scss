@@ -1,39 +1,16 @@
 @import '_setting.scss';
-@import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
 
 .auth-master {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    //background: linear-gradient(120deg,#2980b9, #8e44ad);
+    background-image: url(https://img.freepik.com/free-vector/cosmic-background-alien-planet-deserted-landscape-with-mountains_107791-6400.jpg?w=2000);
     height: 100vh;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    color: $app-main-text-color;
-    .container-auth {
-        max-width: 100%;
-        .left-col {
-            background-color: #277BC0;
-            img{
-                height: 100vh;
-            }
-        }
-        .right-col {
-            background-color: white;
-            .content-right {
-                margin: 10% 10%;
-                display: block;
-                align-items: center;
-                .logo-div {
-                    .logo {
-                        height: 60px;
-                        width: 60px;
-                    }
-                }
-                .content {
-                    font-weight: bold;
-                    font-size: 48px;
-                }
-                .sub-content {
-                }
-            }
-        }
-    }
+    overflow: hidden;
 }
+
