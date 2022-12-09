@@ -14,11 +14,16 @@ const SingleBoard = ({ board: { _id, title } }) => {
             className="shadow"
             border="success"
             role="button"
+            style={{ maxWidth: "15rem", marginTop: "1rem" }}
             onClick={goToBoard}
         >
+            <Card.Img
+                variant="top"
+                src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_36.jpg"
+            />
             <Card.Body>
                 <Card.Title>
-                    <p className="board.title">{title}</p>
+                    <p>{title}</p>
                 </Card.Title>
             </Card.Body>
         </Card>

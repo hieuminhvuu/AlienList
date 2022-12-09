@@ -1,9 +1,13 @@
 @import '_setting.scss';
 @import "~bootstrap/scss/bootstrap";
 
-body {
+.dashboard {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     line-height: 1.3em;
+    .all-board-container{
+        width: 90%;
+        margin-top: 4rem;
+    }
 }
