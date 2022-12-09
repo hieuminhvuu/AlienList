@@ -27,9 +27,9 @@ const AllBoard = () => {
     } else {
         body = (
             <div>
-                <Row className="row-cols-1 row-cols-md-3 g-4 mx-auto mt-3">
+                <Row>
                     {boards.map((board) => (
-                        <Col key={board._id} className="my-2">
+                        <Col key={board._id} xs={2}>
                             <SingleBoard board={board} />
                         </Col>
                     ))}

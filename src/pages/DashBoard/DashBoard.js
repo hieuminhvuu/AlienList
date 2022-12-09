@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "components/AppBar/AppBar";
 import AllBoard from "components/AllBoard/AllBoard";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import "./DashBoard.scss";
+import AddPostModal from "components/AddBoardModal/AddPostModal";
 
 const DashBoard = () => {
+    const toggleShowAddModal = () => setShowAddModal(!showAddModal);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const onAddModalAction = () => {
+        toggleShowAddModal();
+    };
+
     return (
-        <div>
+        <div className="dashboard">
             <AppBar />
-            <div>DashBoard</div>
-            <AllBoard />
+            <div>
+                <Container className="all-board-container" fluid>
+                    <Row xs={11}>
+                        <Col>
+                            <h4>All Boards</h4>
+                        </Col>
+                        <Col xs={1}>
+                            <Button onClick={toggleShowAddModal}>+ Add</Button>
+                        </Col>
+                    </Row>
+                    <AllBoard />
+                </Container>
+            </div>
+            <AddPostModal show={showAddModal} onAction={onAddModalAction} />
         </div>
     );
 };
