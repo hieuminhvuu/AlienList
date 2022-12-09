@@ -13,6 +13,11 @@ export const boardReducer = (state, action) => {
                 boards: [],
                 boardsLoading: false,
             };
+        case "ADD_BOARD":
+            return {
+                ...state,
+                boards: [...state.boards, payload],
+            };
         default:
             return state;
     }

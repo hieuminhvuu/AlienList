@@ -1,14 +1,34 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from "utilities/constans";
+import { BoardContext } from "contexts/BoardContext";
 
 const AddPostModal = (props) => {
-    const { title, show, onAction } = props;
-    const toggleAddBoard = () => {
-        console.log("here");
+    // Context
+    const { addBoard } = useContext(BoardContext);
+    const { show, onAction } = props;
+    const newBoardTitleRef = useRef(null);
+    useEffect(() => {
+        if (show) {
+            newBoardTitleRef.current.focus();
+        }
+    });
+    const [boardTitle, setBoardTitle] = useState("");
+    const onChangeAddNewBoard = (e) => setBoardTitle(e.target.value);
+    const onSubmitAddBoard = async (event) => {
+        event.preventDefault();
+        if (!boardTitle.trim()) {
+            newBoardTitleRef.current.focus();
+            return;
+        }
+        const newBoardToAdd = {
+            title: boardTitle,
+        };
+        await addBoard(newBoardToAdd);
+
+        setBoardTitle("");
         onAction(MODAL_ACTION_CONFIRM);
     };
-    const newBoardTitleRef = useRef(null);
     return (
         <Modal
             show={show}
@@ -25,10 +45,11 @@ const AddPostModal = (props) => {
                         <Form.Control
                             type="text"
                             placeholder="Title"
-                            name="title"
+                            name="boardTitle"
                             required
-                            value={title}
+                            value={boardTitle}
                             ref={newBoardTitleRef}
+                            onChange={onChangeAddNewBoard}
                         />
                     </Form.Group>
                 </Modal.Body>
@@ -43,7 +64,7 @@ const AddPostModal = (props) => {
                 <Button
                     variant="primary"
                     type="submit"
-                    onClick={toggleAddBoard}
+                    onClick={onSubmitAddBoard}
                 >
                     Add
                 </Button>
