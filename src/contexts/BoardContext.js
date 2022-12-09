@@ -27,8 +27,27 @@ const BoardContentProvider = ({ children }) => {
         }
     };
 
+    // Add board
+    const addBoard = async (newBoard) => {
+        try {
+            const checkLogin = await axios.get(`${API_ROOT}/v1/auth`);
+            const newBoardToAdd = {
+                ...newBoard,
+                userId: checkLogin.data.user._id,
+            };
+            const response = await axios.post(
+                `${API_ROOT}/v1/boards`,
+                newBoardToAdd
+            );
+            dispatch({ type: "ADD_BOARD", payload: response.data });
+            return response.data;
+        } catch (error) {
+            throw new error();
+        }
+    };
+
     // Post context data
-    const boardContextData = { boardState, getBoards };
+    const boardContextData = { boardState, getBoards, addBoard };
 
     return (
         <BoardContext.Provider value={boardContextData}>
