@@ -50,6 +50,9 @@ const AddPostModal = (props) => {
                             value={boardTitle}
                             ref={newBoardTitleRef}
                             onChange={onChangeAddNewBoard}
+                            onKeyDown={(event) =>
+                                event.key === "Enter" && onSubmitAddBoard(event)
+                            }
                         />
                     </Form.Group>
                 </Modal.Body>

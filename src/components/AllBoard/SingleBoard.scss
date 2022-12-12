@@ -1,0 +1,15 @@
+.my-card {
+    max-width: 15rem;
+    margin-top: 1rem;
+    .card-title {
+        position: relative;
+        .delete {
+            position: absolute;
+            right: 0;
+            top: 0;
+            &:hover{
+                color: red;
+            }
+        }
+    }
+}
