@@ -42,12 +42,30 @@ const BoardContentProvider = ({ children }) => {
             dispatch({ type: "ADD_BOARD", payload: response.data });
             return response.data;
         } catch (error) {
-            throw new error();
+            throw error;
+        }
+    };
+
+    // Delete board
+    const deleteBoard = async (board) => {
+        try {
+            const checkLogin = await axios.get(`${API_ROOT}/v1/auth`);
+            const boardToDelete = {
+                ...board,
+                userId: checkLogin.data.user._id,
+            };
+            const response = await axios.delete(`${API_ROOT}/v1/boards`, {
+                data: boardToDelete,
+            });
+            dispatch({ type: "DELETE_BOARD", payload: board });
+            return response;
+        } catch (error) {
+            throw error;
         }
     };
 
     // Post context data
-    const boardContextData = { boardState, getBoards, addBoard };
+    const boardContextData = { boardState, getBoards, addBoard, deleteBoard };
 
     return (
         <BoardContext.Provider value={boardContextData}>

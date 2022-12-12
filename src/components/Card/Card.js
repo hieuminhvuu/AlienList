@@ -79,7 +79,7 @@ function Card(props) {
                 <div className="action">
                     {/* <i class="fa fa-pencil update" role="button"></i> */}
                     <i
-                        class="fa fa-trash-o delete"
+                        className="fa fa-trash-o delete"
                         role="button"
                         onClick={toggleShowConfirmModal}
                     ></i>
