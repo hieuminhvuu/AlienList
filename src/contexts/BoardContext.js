@@ -64,8 +64,31 @@ const BoardContentProvider = ({ children }) => {
         }
     };
 
+    // Update board
+    const updateBoard = async (board) => {
+        try {
+            const boardToUpdate = {
+                title: board.title,
+            };
+            const response = await axios.put(
+                `${API_ROOT}/v1/boards/${board.id}`,
+                boardToUpdate
+            );
+            dispatch({ type: "UPDATE_BOARD", payload: board });
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    };
+
     // Post context data
-    const boardContextData = { boardState, getBoards, addBoard, deleteBoard };
+    const boardContextData = {
+        boardState,
+        getBoards,
+        addBoard,
+        deleteBoard,
+        updateBoard,
+    };
 
     return (
         <BoardContext.Provider value={boardContextData}>

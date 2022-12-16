@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { updateCard } from "actions/ApiCall";
 import { useState } from "react";
-//import { selectAllInlineText } from "utilities/contentEditable";
 import { selectAllInlineText } from "utilities/contentEditable";
 import "./Card.scss";
 import { Form } from "react-bootstrap";
