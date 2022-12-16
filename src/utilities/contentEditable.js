@@ -8,6 +8,7 @@ export const saveContentAfterPressEnter = (e) => {
 
 //select all input value
 export const selectAllInlineText = (e) => {
+    e.stopPropagation();
     e.target.focus();
     e.target.select();
 };

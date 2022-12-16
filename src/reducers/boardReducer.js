@@ -25,6 +25,14 @@ export const boardReducer = (state, action) => {
                     (board) => board._id !== payload.id
                 ),
             };
+        case "UPDATE_BOARD":
+            const newBoards = state.boards.map((board) =>
+                board._id === payload._id ? payload : board
+            );
+            return {
+                ...state,
+                boards: newBoards,
+            };
         default:
             return state;
     }

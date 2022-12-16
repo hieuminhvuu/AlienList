@@ -1,3 +1,5 @@
+@import '_setting.scss';
+
 .my-card {
     max-width: 15rem;
     margin-top: 1rem;
@@ -5,11 +7,17 @@
         position: relative;
         .delete {
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 10px;
+            top: 10px;
             &:hover{
                 color: red;
             }
+        }
+        .board-title {
+            background-color: inherit;
+            border: none;
+            font-size: inherit;
+            font-weight: inherit;
         }
     }
 }

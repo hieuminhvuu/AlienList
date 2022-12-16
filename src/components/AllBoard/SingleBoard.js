@@ -1,16 +1,18 @@
 import React, { useState, useContext } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import "./SingleBoard.scss";
-
 import ConfirmModal from "components/Common/ConfirmModal";
 import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 import { BoardContext } from "contexts/BoardContext";
+import { selectAllInlineText } from "utilities/contentEditable";
+import { saveContentAfterPressEnter } from "utilities/contentEditable";
 
 const SingleBoard = ({ board: { _id, title } }) => {
     let history = useHistory();
 
     const { deleteBoard } = useContext(BoardContext);
+    const { updateBoard } = useContext(BoardContext);
     const goToBoard = () => {
         history.push(`/dashboard/${_id}`);
     };
@@ -32,6 +34,22 @@ const SingleBoard = ({ board: { _id, title } }) => {
         }
         toggleShowConfirmModal();
     };
+
+    //Update board title
+    const [boardTitle, setBoardTitle] = useState(title);
+    const handleBoardTitleChange = (e) => {
+        setBoardTitle(e.target.value);
+    };
+    const handleBoardTitleBlur = async () => {
+        // Call api update board
+        if (boardTitle !== title) {
+            const board = {
+                id: _id,
+                title: boardTitle,
+            };
+            await updateBoard(board);
+        }
+    };
     return (
         <div>
             <Card
@@ -46,7 +64,16 @@ const SingleBoard = ({ board: { _id, title } }) => {
                 />
                 <Card.Body>
                     <Card.Title className="card-title">
-                        <p>{title}</p>
+                        <Form.Control
+                            className="board-title"
+                            type="text"
+                            spellCheck="false"
+                            value={boardTitle}
+                            onClick={selectAllInlineText}
+                            onChange={handleBoardTitleChange}
+                            onBlur={handleBoardTitleBlur}
+                            onKeyDown={saveContentAfterPressEnter}
+                        ></Form.Control>
                         <i
                             className="fa fa-trash-o delete"
                             role="button"
