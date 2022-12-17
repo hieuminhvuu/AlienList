@@ -69,9 +69,10 @@ const BoardContentProvider = ({ children }) => {
         try {
             const boardToUpdate = {
                 title: board.title,
+                cover: board.cover,
             };
             const response = await axios.put(
-                `${API_ROOT}/v1/boards/${board.id}`,
+                `${API_ROOT}/v1/boards/${board._id}`,
                 boardToUpdate
             );
             dispatch({ type: "UPDATE_BOARD", payload: board });

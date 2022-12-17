@@ -3,21 +3,44 @@
 .my-card {
     max-width: 15rem;
     margin-top: 1rem;
-    .card-title {
-        position: relative;
-        .delete {
+    position: relative;
+    .card-body{
+        height: 3rem;
+        .card-title {
             position: absolute;
-            right: 0px;
-            top: 10px;
-            &:hover{
-                color: red;
+            bottom: -5px;
+            left: 0;
+            .board-title {
+                background-color: inherit;
+                border: none;
+                font-size: inherit;
+                font-weight: inherit;
+                text-align: center;
             }
         }
-        .board-title {
-            background-color: inherit;
-            border: none;
-            font-size: inherit;
-            font-weight: inherit;
+        .dropdown {
+            position: absolute;
+            top: 0;
+            right: 0;
+            .dropdown-btn {
+                height: 32px;
+                padding: 0 $gap;
+                font-size: 16px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                background-color: white;
+                border: none;
+                color: $app-main-text-color;
+                &:after{
+                    content: '...';
+                    border: 5px;
+                    vertical-align: 1.255em;
+                }
+                &:hover{
+                    background-color: darken($color: $column-bg-color, $amount: 10);
+                    border-color: darken($color: $column-bg-color, $amount: 10);
+                }
+            }
         }
-    }
+    }   
 }
