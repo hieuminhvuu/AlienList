@@ -17,6 +17,7 @@ import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 function Column(props) {
     const { column, onCardDrop, onUpdateColumnState } = props;
     const cards = mapOrder(column.cards, column.cardOrder, "_id");
+
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal);
 
@@ -105,27 +106,6 @@ function Column(props) {
         });
     };
 
-    // const onUpdateCardState = (newCardToUpdate) => {
-    //     const cardIdToUpdate = newCardToUpdate._id;
-
-    //     let newCards = [...cards];
-    //     const cardIndexToUpdate = newCards.findIndex(
-    //         (i) => i._id === cardIdToUpdate
-    //     );
-    //     if (newCardToUpdate._destroy) {
-    //         newCards.splice(cardIndexToUpdate, 1);
-    //     } else {
-    //         newCards.splice(cardIndexToUpdate, 1, newCardToUpdate);
-    //     }
-
-    //     let newColumn = { ...column };
-    //     newColumn.cardOrder = newCards.map((c) => c._id);
-    //     newColumn.cards = newCards;
-
-    //     setCards(newCards);
-    //     setColumn(newColumn);
-    // };
-
     return (
         <div className="column">
             <header className="column-drag-handle">
@@ -204,7 +184,7 @@ function Column(props) {
                     <div className="add-new-card-actions">
                         <Button
                             type="button"
-                            class="btn btn-success"
+                            className="btn btn-success"
                             size="sm"
                             onClick={addNewCard}
                         >

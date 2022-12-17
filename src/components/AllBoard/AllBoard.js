@@ -23,7 +23,13 @@ const AllBoard = () => {
             </div>
         );
     } else if (boards.length === 0) {
-        body = <div>U didn't create any board !!!</div>;
+        body = (
+            <div>
+                <h5 style={{ color: "red" }}>
+                    You don't have any board! Create a board now!
+                </h5>
+            </div>
+        );
     } else {
         body = (
             <div>

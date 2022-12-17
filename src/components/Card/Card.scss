@@ -44,6 +44,13 @@ $card-border-radius:4px;
                     color: red;
                 }
             }
+            .menu {
+                margin-left: 10px;
+                &:hover{
+                    color: gray;
+                }
+            }
         }
+        
     }
 }

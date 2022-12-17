@@ -60,7 +60,7 @@ const SingleBoard = ({ board: { _id, title } }) => {
             >
                 <Card.Img
                     variant="top"
-                    src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_36.jpg"
+                    src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_54.jpg"
                 />
                 <Card.Body>
                     <Card.Title className="card-title">
