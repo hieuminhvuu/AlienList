@@ -221,7 +221,7 @@ function BoardContent() {
                             />
                             <Button
                                 type="button"
-                                class="btn btn-success"
+                                className="btn btn-success"
                                 size="sm"
                                 onClick={addNewColumn}
                             >

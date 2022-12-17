@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { updateCard } from "actions/ApiCall";
-import { useState } from "react";
 import { selectAllInlineText } from "utilities/contentEditable";
 import "./Card.scss";
 import { Form } from "react-bootstrap";
-import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 import ConfirmModal from "components/Common/ConfirmModal";
 import { saveContentAfterPressEnter } from "utilities/contentEditable";
+import { Modal, Button, Dropdown } from "react-bootstrap";
+import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 
 function Card(props) {
     const { card } = props;
-
-    const [cardTitleCancel, setCardTitleCancel] = useState("none");
+    const [showCard, setShowCard] = useState("block");
 
     const [cardTitle, setCardTitle] = useState("");
     useEffect(() => {
@@ -46,25 +45,73 @@ function Card(props) {
                 _destroy: true,
             };
             updateCard(card._id, newCard);
-            setCardTitleCancel("line-through");
+            setShowCard("none");
         }
         toggleShowConfirmModal();
     };
 
+    // Update card cover
+    const [showModalUpdateCardCover, setShowModalUpdateCardCover] =
+        useState(false);
+
+    const toggleShowUpdateCover = () => {
+        setShowModalUpdateCardCover(!showModalUpdateCardCover);
+    };
+    const [url, setUrl] = useState("");
+    const handleOnChangeUrl = (e) => {
+        setUrl(e.target.value);
+    };
+    const newUrlRef = useRef(null);
+    useEffect(() => {
+        if (showModalUpdateCardCover) {
+            newUrlRef.current.focus();
+        }
+    });
+    const onUpdateCardCover = () => {
+        if (url) {
+            const newCard = {
+                ...card,
+                cover: url,
+            };
+            // Call api update
+            updateCard(card._id, newCard);
+            // set state
+            setUrl("");
+            setShowModalUpdateCardCover(!showModalUpdateCardCover);
+        } else {
+            newUrlRef.current.focus();
+        }
+    };
+    const onDeleteCardCover = () => {
+        const newCard = {
+            ...card,
+            cover: null,
+        };
+        // Call api update card
+        updateCard(card._id, newCard);
+        // set state
+        setUrl("");
+        setShowModalUpdateCardCover(!showModalUpdateCardCover);
+    };
+
+    const [showActiveIcon, setShowActiveIcon] = useState(false);
+    const toggleShowActionIcon = () => {
+        setShowActiveIcon(!showActiveIcon);
+    };
+
     return (
-        <div className="card-item">
+        <div className="card-item" style={{ display: showCard }}>
             {card.cover && (
                 <img
                     onMouseDown={(e) => e.preventDefault()}
                     className="card-cover"
                     src={card.cover}
-                    alt="alt-img"
+                    alt="Card cover"
                 />
             )}
             <div className="content">
                 <Form.Control
                     type="text"
-                    style={{ textDecorationLine: cardTitleCancel }}
                     className="trello-content-editable name-content"
                     spellCheck="false"
                     value={cardTitle}
@@ -76,20 +123,70 @@ function Card(props) {
                 ></Form.Control>
                 {/* <div className="title">{card.title}</div> */}
                 <div className="action">
-                    {/* <i class="fa fa-pencil update" role="button"></i> */}
-                    <i
-                        className="fa fa-trash-o delete"
-                        role="button"
-                        onClick={toggleShowConfirmModal}
-                    ></i>
+                    {showActiveIcon && (
+                        <div>
+                            <i
+                                className="fa fa-pencil update"
+                                role="button"
+                                onClick={toggleShowUpdateCover}
+                            ></i>
+                            <i
+                                className="fa fa-trash-o delete"
+                                role="button"
+                                onClick={toggleShowConfirmModal}
+                            ></i>
+                            <i
+                                className="fa fa-ellipsis-h menu"
+                                role="button"
+                                onClick={toggleShowActionIcon}
+                            ></i>
+                        </div>
+                    )}
+                    {!showActiveIcon && (
+                        <i
+                            className="fa fa-ellipsis-h menu"
+                            role="button"
+                            onClick={toggleShowActionIcon}
+                        ></i>
+                    )}
                 </div>
             </div>
             <ConfirmModal
                 show={showConfirmModal}
                 onAction={onConfirmModalAction}
-                title={"Remove column"}
+                title={"Remove card"}
                 content={`Are you sure to remove  ?`}
             ></ConfirmModal>
+            <Modal
+                backdrop="static"
+                keyboard={false}
+                show={showModalUpdateCardCover}
+                onHide={toggleShowUpdateCover}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Update card cover</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Group>
+                        <Form.Control
+                            type="text"
+                            placeholder="url"
+                            required
+                            value={url}
+                            onChange={handleOnChangeUrl}
+                            ref={newUrlRef}
+                        />
+                    </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={onDeleteCardCover}>
+                        Delete cover
+                    </Button>
+                    <Button variant="primary" onClick={onUpdateCardCover}>
+                        Update cover
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }
