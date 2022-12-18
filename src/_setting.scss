@@ -5,9 +5,9 @@ $gap : 10px;
 $column-border-radius : 4px;
 
 //appBar + boardBar + appContent = 99vh, 1vh for scrollbar
-$navbar-app-height: 5vh;
-$navbar-board-height: 6vh;
-$board-content-height: 88vh;
+$navbar-app-height: 50px;
+$navbar-board-height: 30px;
+$board-content-height: calc(99vh - $navbar-app-height - $navbar-board-height - 4px);
 
 //Colors
 $board-bg-color: #0079bf;

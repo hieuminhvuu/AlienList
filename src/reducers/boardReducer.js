@@ -22,7 +22,7 @@ export const boardReducer = (state, action) => {
             return {
                 ...state,
                 boards: state.boards.filter(
-                    (board) => board._id !== payload._id
+                    (board) => board._id !== payload.id
                 ),
             };
         case "UPDATE_BOARD":
