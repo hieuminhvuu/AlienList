@@ -28,7 +28,7 @@ const SingleBoard = ({ board: { _id, title, cover } }) => {
     const onConfirmModalAction = async (type) => {
         if (type === MODAL_ACTION_CONFIRM) {
             const board = {
-                _id: _id,
+                id: _id,
             };
             await deleteBoard(board);
         }
@@ -75,6 +75,8 @@ const SingleBoard = ({ board: { _id, title, cover } }) => {
             await updateBoard(board);
             setUrl("");
             setShowModalUpdateBoardCover(!showModalUpdateBoardCover);
+        } else {
+            newUrlRef.current.focus();
         }
     };
     return (

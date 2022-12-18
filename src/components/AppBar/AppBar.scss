@@ -3,12 +3,14 @@
 $appbar-bg-color: #0067a3;
 
 .navbar-app {
+    min-width: 700px;
     height: $navbar-app-height;
     padding: 0;
     display: flex;
     align-items: center;
     background-color: $appbar-bg-color;
     color: aliceblue;
+    margin-bottom: 9px;
     .alien-trello-container{
         max-width: 100%;
         .app-actions {
