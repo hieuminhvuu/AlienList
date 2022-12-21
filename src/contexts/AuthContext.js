@@ -3,7 +3,6 @@ import { authReducer } from "reducers/authReducer";
 import { API_ROOT, LOCAL_STORAGE_TOKEN_NAME } from "utilities/constans";
 import axios from "axios";
 import setAuthToken from "utilities/setAuthToken";
-//import { check } from "actions/ApiCall";
 
 export const AuthContext = createContext();
 
@@ -21,7 +20,6 @@ const AuthContextProvider = ({ children }) => {
         }
 
         try {
-            //const response = { ...check() };
             const response = await axios.get(`${API_ROOT}/v1/auth`);
             if (response.data.success) {
                 dispatch({

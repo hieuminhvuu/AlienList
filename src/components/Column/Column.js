@@ -102,7 +102,8 @@ function Column(props) {
 
             onUpdateColumnState(newColumn);
             setNewCardTitle("");
-            toggleOpenNewCardForm();
+            newCardTextareaRef.current.focus();
+            // toggleOpenNewCardForm();
         });
     };
 

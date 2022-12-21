@@ -19,7 +19,7 @@ const DashBoard = () => {
                 <Container className="all-board-container" fluid>
                     <Row xs={11}>
                         <Col>
-                            <h4>All Boards</h4>
+                            <h2>All Boards</h2>
                         </Col>
                         <Col xs={1}>
                             <Button onClick={toggleShowAddModal}>+ Add</Button>

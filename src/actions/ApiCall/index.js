@@ -3,17 +3,7 @@ import { API_ROOT } from "utilities/constans";
 
 export const check = async () => {
     const request = await axios.get(`${API_ROOT}/v1/auth`);
-    return request.data;
-};
-
-export const login = async (data) => {
-    const request = await axios.post(`${API_ROOT}/v1/auth/login`, data);
-    return request.data;
-};
-
-export const register = async (data) => {
-    const request = await axios.post(`${API_ROOT}/v1/auth/register`, data);
-    return request.data;
+    return request;
 };
 
 export const updateBoard = async (id, data) => {
@@ -45,5 +35,11 @@ export const createNewCard = async (data) => {
 // Update or remove card
 export const updateCard = async (id, data) => {
     const request = await axios.put(`${API_ROOT}/v1/cards/${id}`, data);
+    return request.data;
+};
+
+// Update info user
+export const updateUser = async (id, data) => {
+    const request = await axios.put(`${API_ROOT}/v1/auth/${id}`, data);
     return request.data;
 };
