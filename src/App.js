@@ -8,6 +8,7 @@ import DashBoard from "pages/DashBoard/DashBoard";
 import Board from "pages/Board/Board";
 import ProtectedRoute from "actions/routing/ProtectedRoute";
 import BoardContentProvider from "contexts/BoardContext";
+import Profile from "pages/Profile/Profile";
 
 function App() {
     return (
@@ -39,6 +40,11 @@ function App() {
                             exact
                             path="/dashboard/:id"
                             component={Board}
+                        />
+                        <ProtectedRoute
+                            exact
+                            path="/profile"
+                            component={Profile}
                         />
                     </Switch>
                 </Router>

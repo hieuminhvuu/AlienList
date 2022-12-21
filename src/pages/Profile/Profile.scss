@@ -1,0 +1,36 @@
+.div-first {
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(117,232,255,1) 97%, rgba(122,233,255,1) 98%, rgba(0,212,255,1) 100%);
+    .container-profile {
+        width: 50%;
+        min-width: 500px;
+        .first-row {
+            border-radius: 5px;
+            background: url("../../assets/image/background.jpg") no-repeat center center;
+            background-size: cover;
+            padding-top: 40px;
+            padding-bottom: 15px;
+            
+            .col-image {
+                margin-right: 20px;
+                text-align: center;
+                .image {
+                    height: 150px;
+                    border-radius: 50%;
+                }
+            }
+            .name-profile {
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+.div-second {
+    .container-profile {
+        width: 50%;
+        min-width: 500px;
+        .div-button {
+            text-align: right;
+        }
+    }
+}

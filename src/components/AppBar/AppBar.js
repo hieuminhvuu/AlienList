@@ -1,12 +1,18 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 import "./AppBar.scss";
-import { Container as BootstrapContainer, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {
+    Container as BootstrapContainer,
+    Row,
+    Col,
+    Dropdown,
+} from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
 
 function AppBar() {
+    let history = useHistory();
+
     const { logoutUser } = useContext(AuthContext);
 
     const logout = () => {
@@ -19,54 +25,52 @@ function AppBar() {
                 <Row>
                     <Col sm={5} xs={12} className="col-no-padding">
                         <div className="app-actions">
-                            <div className="item home">
-                                <i className="fa fa-home" />
-                            </div>
-                            <div className="item boards">
-                                <Link
-                                    to="/dashboard"
-                                    style={{
-                                        color: "white",
-                                        textDecoration: "none",
-                                    }}
-                                >
-                                    <i className="fa fa-columns" />
-                                    &nbsp;&nbsp;<strong>Boards</strong>
-                                </Link>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm={2} xs={12} className="col-no-padding">
-                        <div className="app-branding text-center">
-                            <a
-                                href="https://github.com/hieuminhvuu"
-                                target="blank"
+                            <div
+                                className="item home"
+                                role="button"
+                                onClick={() => history.push(`/dashboard`)}
                             >
-                                <img
-                                    src="https://cdn-icons-png.flaticon.com/512/290/290836.png"
-                                    className="top-logo"
-                                    alt="alien-logo"
-                                />
-                                <span className="alien-slogan">Alien</span>
-                            </a>
+                                <i className="fa fa-home" />
+                                &nbsp;&nbsp;<strong>Home</strong>
+                            </div>
                         </div>
                     </Col>
-                    <Col sm={5} xs={12} className="col-no-padding">
+                    <Col sm={2} xs={12} className="col-no-padding center">
+                        TO-DO-LIST
+                    </Col>
+                    <Col sm={5} xs={12} className="col-no-padding right">
                         <div className="user-actions">
-                            <div className="item user-avatar">
-                                <img
-                                    src="https://play-lh.googleusercontent.com/tZsW2cETxSjdJk7RGW6hskzEHBjMGUhvbi7qG-Ae8nJMkGegbpMmE_GoCMLW8ROpgY4"
-                                    alt="avatar-alien"
-                                    title="alien"
-                                />
-                            </div>
-                            <div className="item logout">
-                                <i
-                                    onClick={logout}
-                                    className="fa fa-sign-out"
-                                    role="button"
-                                />
-                            </div>
+                            <Dropdown className="dropdown">
+                                <Dropdown.Toggle
+                                    id="dropdown-basic"
+                                    size="sm"
+                                    className="dropdown-btn"
+                                >
+                                    <strong className="name-user">Menu</strong>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu className="dropdown-menu">
+                                    <Dropdown.Item
+                                        onClick={() =>
+                                            history.push(`/dashboard`)
+                                        }
+                                    >
+                                        <i className="fa fa-list-alt"></i>{" "}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Boards
+                                    </Dropdown.Item>
+                                    <hr />
+                                    <Dropdown.Item
+                                        onClick={() => history.push(`/profile`)}
+                                    >
+                                        <i className="fa fa-user-circle"></i>{" "}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;My Profile
+                                    </Dropdown.Item>
+                                    <hr />
+                                    <Dropdown.Item onClick={logout}>
+                                        <i className="fa fa-sign-out" />{" "}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Log Out
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                     </Col>
                 </Row>
