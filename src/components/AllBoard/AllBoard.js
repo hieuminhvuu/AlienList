@@ -3,6 +3,8 @@ import { BoardContext } from "contexts/BoardContext";
 import { useContext, useEffect } from "react";
 import { Spinner, Row, Col } from "react-bootstrap";
 import SingleBoard from "./SingleBoard";
+import oops from "../../assets/image/oops.png";
+import "./AllBoard.scss";
 
 const AllBoard = () => {
     // Contexts
@@ -24,8 +26,11 @@ const AllBoard = () => {
         );
     } else if (boards.length === 0) {
         body = (
-            <div>
-                <h5 style={{ color: "red" }}>
+            <div className="oops">
+                <div className="oops-img">
+                    <img src={oops} />
+                </div>
+                <h5 className="oops-des">
                     You don't have any board! Create a board now!
                 </h5>
             </div>

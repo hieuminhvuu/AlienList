@@ -10,6 +10,7 @@
             position: absolute;
             bottom: -5px;
             left: 0;
+            right: 0;
             .board-title {
                 background-color: inherit;
                 border: none;
@@ -30,7 +31,7 @@
                 font-size: 16px;
                 font-weight: bold;
                 letter-spacing: 1px;
-                background-color: white;
+                background-color: inherit;
                 border: none;
                 color: $app-main-text-color;
                 &:after{
@@ -45,4 +46,14 @@
             }
         }
     }   
+}
+.update-board-modal{
+    img{
+        width: 100px;
+        margin: 8px;
+        cursor: pointer;
+        &:hover {
+            border: 5px solid red;
+        }
+    }
 }
