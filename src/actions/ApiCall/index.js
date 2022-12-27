@@ -43,3 +43,8 @@ export const updateUser = async (id, data) => {
     const request = await axios.put(`${API_ROOT}/v1/auth/${id}`, data);
     return request.data;
 };
+
+export const getAllColumn = async (id) => {
+    const request = await axios.get(`${API_ROOT}/v1/columns/${id}`);
+    return request.data;
+};

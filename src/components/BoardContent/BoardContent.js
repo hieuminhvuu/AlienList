@@ -18,6 +18,7 @@ import {
     updateBoard,
     updateColumn,
     updateCard,
+    getAllColumn,
 } from "actions/ApiCall";
 import { useParams } from "react-router-dom";
 
@@ -81,7 +82,7 @@ function BoardContent() {
         });
     };
 
-    const onCardDrop = (columnId, dropResult) => {
+    const onCardDrop = async (columnId, dropResult) => {
         if (
             dropResult.removedIndex !== null ||
             dropResult.addedIndex !== null

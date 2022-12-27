@@ -5,7 +5,7 @@ import "./Card.scss";
 import { Form } from "react-bootstrap";
 import ConfirmModal from "components/Common/ConfirmModal";
 import { saveContentAfterPressEnter } from "utilities/contentEditable";
-import { Modal, Button, Dropdown } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 
 function Card(props) {
@@ -17,7 +17,20 @@ function Card(props) {
         setCardTitle(card.title);
     }, [card.title]);
 
+    const [textAreaHeight, setTextAreaHeight] = useState(
+        card.title.length / 24 + 1
+    );
+
     const handleCardTitleChange = (e) => {
+        const height = e.target.scrollHeight;
+        const rows = e.target.rows;
+        const rowHeight = 15;
+        const trows = Math.ceil(height / rowHeight) - 1;
+
+        if (trows > rows) {
+            setTextAreaHeight(trows);
+        }
+
         setCardTitle(e.target.value);
     };
 
@@ -27,6 +40,8 @@ function Card(props) {
                 ...card,
                 title: cardTitle,
             };
+            // Update text area height
+            setTextAreaHeight(cardTitle.length / 26 + 1);
             // Call api update
             updateCard(newCard._id, newCard);
         }
@@ -34,8 +49,6 @@ function Card(props) {
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal);
-
-    //const onUpdateTitle = () => {};
 
     // Remove column
     const onConfirmModalAction = (type) => {
@@ -56,6 +69,8 @@ function Card(props) {
 
     const toggleShowUpdateCover = () => {
         setShowModalUpdateCardCover(!showModalUpdateCardCover);
+        setInvalidUrl("none");
+        setUrl("");
     };
     const [url, setUrl] = useState("");
     const handleOnChangeUrl = (e) => {
@@ -67,8 +82,13 @@ function Card(props) {
             newUrlRef.current.focus();
         }
     });
+    function isImage(imgURL) {
+        return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(imgURL);
+    }
+
+    const [invalidUrl, setInvalidUrl] = useState("none");
     const onUpdateCardCover = () => {
-        if (url) {
+        if (isImage(url)) {
             const newCard = {
                 ...card,
                 cover: url,
@@ -78,7 +98,9 @@ function Card(props) {
             // set state
             setUrl("");
             setShowModalUpdateCardCover(!showModalUpdateCardCover);
+            window.location.reload();
         } else {
+            setInvalidUrl("block");
             newUrlRef.current.focus();
         }
     };
@@ -92,6 +114,7 @@ function Card(props) {
         // set state
         setUrl("");
         setShowModalUpdateCardCover(!showModalUpdateCardCover);
+        window.location.reload();
     };
 
     const [showActiveIcon, setShowActiveIcon] = useState(false);
@@ -112,6 +135,8 @@ function Card(props) {
             <div className="content">
                 <Form.Control
                     type="text"
+                    as="textarea"
+                    rows={textAreaHeight}
                     className="trello-content-editable name-content"
                     spellCheck="false"
                     value={cardTitle}
@@ -121,7 +146,6 @@ function Card(props) {
                     onKeyDown={saveContentAfterPressEnter}
                     onMouseDown={(e) => e.preventDefault()}
                 ></Form.Control>
-                {/* <div className="title">{card.title}</div> */}
                 <div className="action">
                     {showActiveIcon && (
                         <div>
@@ -136,7 +160,7 @@ function Card(props) {
                                 onClick={toggleShowConfirmModal}
                             ></i>
                             <i
-                                className="fa fa-ellipsis-h menu"
+                                className="fa fa-caret-up menu"
                                 role="button"
                                 onClick={toggleShowActionIcon}
                             ></i>
@@ -144,7 +168,7 @@ function Card(props) {
                     )}
                     {!showActiveIcon && (
                         <i
-                            className="fa fa-ellipsis-h menu"
+                            className="fa fa-caret-down menu"
                             role="button"
                             onClick={toggleShowActionIcon}
                         ></i>
@@ -167,6 +191,9 @@ function Card(props) {
                     <Modal.Title>Update card cover</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <h6 style={{ display: invalidUrl, color: "red" }}>
+                        URL invalid !
+                    </h6>
                     <Form.Group>
                         <Form.Control
                             type="text"
