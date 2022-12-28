@@ -54,9 +54,8 @@ const AuthContextProvider = ({ children }) => {
                     LOCAL_STORAGE_TOKEN_NAME,
                     response.data.token
                 );
+                await loadUser();
             }
-
-            await loadUser();
 
             return response.data;
         } catch (error) {

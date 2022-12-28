@@ -8,8 +8,8 @@
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(120deg,#1c92d2, #f2fcfe);
-    //background-image: url("../../assets/image/space.jpg");
+    background: url("../../assets/image/bgimg.jpg") no-repeat center center;
+    background-size: cover;
     height: 100vh;
     overflow: hidden;
 }
