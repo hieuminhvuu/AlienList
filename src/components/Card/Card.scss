@@ -38,7 +38,7 @@ $card-border-radius:4px;
             .update {
                 position: absolute;
                 right: -6px;
-                top: 30px;
+                top: -9px;
                 &:hover{
                     color: green;
                 }
@@ -54,12 +54,30 @@ $card-border-radius:4px;
             .menu {
                 position: absolute;
                 right: -4px;
-                top: -9px;
+                top: 2px;
                 &:hover{
                     color: gray;
                 }
             }
         }
         
+    }
+    
+}
+
+.modal-update-card {
+    .modal-body {
+        .update-card-cover {
+            margin-bottom: 30px;
+            .form-update {
+                margin-bottom: 10px;
+            }
+            .btn {
+                margin-right: 10px;
+            }
+        }
+        .form-update-title {
+            margin-bottom: 10px;
+        }
     }
 }

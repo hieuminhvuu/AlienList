@@ -1,10 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { updateCard } from "actions/ApiCall";
-import { selectAllInlineText } from "utilities/contentEditable";
 import "./Card.scss";
 import { Form } from "react-bootstrap";
 import ConfirmModal from "components/Common/ConfirmModal";
-import { saveContentAfterPressEnter } from "utilities/contentEditable";
 import { Modal, Button } from "react-bootstrap";
 import { MODAL_ACTION_CONFIRM } from "utilities/constans";
 
@@ -17,40 +15,24 @@ function Card(props) {
         setCardTitle(card.title);
     }, [card.title]);
 
-    const [textAreaHeight, setTextAreaHeight] = useState(
-        card.title.length / 24 + 1
-    );
-
-    const handleCardTitleChange = (e) => {
-        const height = e.target.scrollHeight;
-        const rows = e.target.rows;
-        const rowHeight = 15;
-        const trows = Math.ceil(height / rowHeight) - 1;
-
-        if (trows > rows) {
-            setTextAreaHeight(trows);
-        }
-
-        setCardTitle(e.target.value);
-    };
-
-    const handleCardTitleBlur = () => {
+    // Update card title
+    const updateCardTitle = () => {
         if (cardTitle !== card.title) {
             const newCard = {
                 ...card,
                 title: cardTitle,
             };
-            // Update text area height
-            setTextAreaHeight(cardTitle.length / 26 + 1);
             // Call api update
             updateCard(newCard._id, newCard);
+            setShowModalUpdateCardCover(!showModalUpdateCardCover);
+            window.location.reload();
         }
     };
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal);
 
-    // Remove column
+    // Remove card
     const onConfirmModalAction = (type) => {
         if (type === MODAL_ACTION_CONFIRM) {
             const newCard = {
@@ -61,6 +43,7 @@ function Card(props) {
             setShowCard("none");
         }
         toggleShowConfirmModal();
+        setShowActiveIcon(false);
     };
 
     // Update card cover
@@ -71,17 +54,12 @@ function Card(props) {
         setShowModalUpdateCardCover(!showModalUpdateCardCover);
         setInvalidUrl("none");
         setUrl("");
+        setShowActiveIcon(false);
     };
     const [url, setUrl] = useState("");
     const handleOnChangeUrl = (e) => {
         setUrl(e.target.value);
     };
-    const newUrlRef = useRef(null);
-    useEffect(() => {
-        if (showModalUpdateCardCover) {
-            newUrlRef.current.focus();
-        }
-    });
     function isImage(imgURL) {
         return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(imgURL);
     }
@@ -133,19 +111,15 @@ function Card(props) {
                 />
             )}
             <div className="content">
-                <Form.Control
-                    type="text"
-                    as="textarea"
-                    rows={textAreaHeight}
-                    className="trello-content-editable name-content"
+                <p
+                    contentEditable="true"
                     spellCheck="false"
-                    value={cardTitle}
-                    onClick={selectAllInlineText}
-                    onChange={handleCardTitleChange}
-                    onBlur={handleCardTitleBlur}
-                    onKeyDown={saveContentAfterPressEnter}
+                    suppressContentEditableWarning={true}
+                    className="trello-content-editable name-content"
                     onMouseDown={(e) => e.preventDefault()}
-                ></Form.Control>
+                >
+                    {card.title}
+                </p>
                 <div className="action">
                     {showActiveIcon && (
                         <div>
@@ -159,16 +133,11 @@ function Card(props) {
                                 role="button"
                                 onClick={toggleShowConfirmModal}
                             ></i>
-                            <i
-                                className="fa fa-caret-up menu"
-                                role="button"
-                                onClick={toggleShowActionIcon}
-                            ></i>
                         </div>
                     )}
                     {!showActiveIcon && (
                         <i
-                            className="fa fa-caret-down menu"
+                            className="fa fa-ellipsis-h menu"
                             role="button"
                             onClick={toggleShowActionIcon}
                         ></i>
@@ -186,33 +155,50 @@ function Card(props) {
                 keyboard={false}
                 show={showModalUpdateCardCover}
                 onHide={toggleShowUpdateCover}
+                className="modal-update-card"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update card cover</Modal.Title>
+                    <Modal.Title>Update card</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h6 style={{ display: invalidUrl, color: "red" }}>
-                        URL invalid !
-                    </h6>
-                    <Form.Group>
+                    <div className="update-card-cover">
+                        <Form.Label>Update cover</Form.Label>
+                        <h6 style={{ display: invalidUrl, color: "red" }}>
+                            URL invalid !
+                        </h6>
+                        <Form.Group>
+                            <Form.Control
+                                className="form-update"
+                                type="text"
+                                placeholder="url"
+                                required
+                                value={url}
+                                onChange={handleOnChangeUrl}
+                                // ref={newUrlRef}
+                            />
+                        </Form.Group>
+                        <Button variant="primary" onClick={onUpdateCardCover}>
+                            Update cover
+                        </Button>
+                        <Button variant="secondary" onClick={onDeleteCardCover}>
+                            Delete cover
+                        </Button>
+                    </div>
+                    <div>
+                        <Form.Label>Update title</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="url"
-                            required
-                            value={url}
-                            onChange={handleOnChangeUrl}
-                            ref={newUrlRef}
-                        />
-                    </Form.Group>
+                            className="form-update-title"
+                            value={cardTitle}
+                            onChange={(e) => {
+                                setCardTitle(e.target.value);
+                            }}
+                        ></Form.Control>
+                        <Button variant="primary" onClick={updateCardTitle}>
+                            Update title
+                        </Button>
+                    </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={onDeleteCardCover}>
-                        Delete cover
-                    </Button>
-                    <Button variant="primary" onClick={onUpdateCardCover}>
-                        Update cover
-                    </Button>
-                </Modal.Footer>
+                <Modal.Footer></Modal.Footer>
             </Modal>
         </div>
     );
