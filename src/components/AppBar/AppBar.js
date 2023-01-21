@@ -20,7 +20,7 @@ function AppBar() {
     };
 
     return (
-        <nav className="navbar-app">
+        <nav className="navbar-app toggle-dark-mode">
             <BootstrapContainer className="alien-trello-container">
                 <Row>
                     <Col sm={5} xs={12} className="col-no-padding">
@@ -54,14 +54,14 @@ function AppBar() {
                                             history.push(`/dashboard`)
                                         }
                                     >
-                                        <i className="fa fa-list-alt"></i>{" "}
+                                        <i className="fa fa-list-alt"/>{" "}
                                         &nbsp;&nbsp;&nbsp;&nbsp;Boards
                                     </Dropdown.Item>
                                     <hr />
                                     <Dropdown.Item
                                         onClick={() => history.push(`/profile`)}
                                     >
-                                        <i className="fa fa-user-circle"></i>{" "}
+                                        <i className="fa fa-user-circle"/>{" "}
                                         &nbsp;&nbsp;&nbsp;&nbsp;My Profile
                                     </Dropdown.Item>
                                     <hr />

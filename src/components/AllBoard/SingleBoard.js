@@ -133,23 +133,23 @@ const SingleBoard = ({ board: { _id, title, cover } }) => {
                 <Card.Body className="card-body">
                     <Card.Title className="card-title">
                         <Form.Control
-                            className="board-title"
-                            type="text"
-                            spellCheck="false"
-                            value={boardTitle}
-                            onClick={selectAllInlineText}
-                            onChange={handleBoardTitleChange}
-                            onBlur={handleBoardTitleBlur}
-                            onKeyDown={saveContentAfterPressEnter}
-                        ></Form.Control>
+    className="board-title"
+    type="text"
+    spellCheck="false"
+    value={boardTitle}
+    onClick={selectAllInlineText}
+    onChange={handleBoardTitleChange}
+    onBlur={handleBoardTitleBlur}
+    onKeyDown={saveContentAfterPressEnter}
+    />
                     </Card.Title>
                     <div className="dropdown">
                         <Dropdown onClick={(e) => e.stopPropagation()}>
                             <Dropdown.Toggle
-                                id="dropdown-basic"
-                                size="sm"
-                                className="dropdown-btn"
-                            ></Dropdown.Toggle>
+    id="dropdown-basic"
+    size="sm"
+    className="dropdown-btn"
+    />
                             <Dropdown.Menu>
                                 <Dropdown.Item
                                     onClick={() =>
@@ -159,11 +159,11 @@ const SingleBoard = ({ board: { _id, title, cover } }) => {
                                     }
                                 >
                                     Update cover{" "}
-                                    <i className="fa fa-pencil"></i>
+                                    <i className="fa fa-pencil"/>
                                 </Dropdown.Item>
                                 <Dropdown.Item onClick={toggleShowConfirmModal}>
                                     Remove board{" "}
-                                    <i className="fa fa-trash-o"></i>
+                                    <i className="fa fa-trash-o"/>
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -171,11 +171,11 @@ const SingleBoard = ({ board: { _id, title, cover } }) => {
                 </Card.Body>
             </Card>
             <ConfirmModal
-                show={showConfirmModal}
-                onAction={onConfirmModalAction}
-                title={"Remove board"}
-                content={`Are you sure to remove  ?`}
-            ></ConfirmModal>
+    show={showConfirmModal}
+    onAction={onConfirmModalAction}
+    title={"Remove board"}
+    content={`Are you sure to remove  ?`}
+    />
             <Modal
                 className="update-board-modal"
                 backdrop="static"

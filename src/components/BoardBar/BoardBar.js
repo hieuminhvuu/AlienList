@@ -1,7 +1,9 @@
 import React from "react";
+import date_img from "../../assets/image/date.svg";
 
 import "./BoardBar.scss";
 import { Container as BootstrapContainer, Row, Col } from "react-bootstrap";
+import DarkMode from "../AccountData/DarkMode";
 
 const date: Date = new Date();
 const year: number = date.getFullYear();
@@ -33,28 +35,31 @@ const dateTimeFormat = `${year}-${month.toString().padStart(2, "0")}-${day
 
 function BoardBar() {
     return (
-        <nav className="navbar-board">
+        <nav className="navbar-board toggle-dark-mode">
             <BootstrapContainer className="alien-trello-container">
                 <Row>
                     <Col sm={10} xs={12} className="col-no-padding">
                         <div className="board-info">
                             <div className="item board-logo-icon">
-                                <i className="fa fa-coffee" />
+                                <img src={date_img} className="date_img" alt="date_"/>
                                 &nbsp;&nbsp;<time dateTime={dateTimeFormat}>{todayDate}</time>
                             </div>
                         </div>
                     </Col>
+                    {/*<Col sm={2} xs={12} className="col-no-padding">*/}
+                    {/*    <div className="board-actions">*/}
+                    {/*        <div*/}
+                    {/*            className="item menu"*/}
+                    {/*            onClick={() => {*/}
+                    {/*                window.location.reload();*/}
+                    {/*            }}*/}
+                    {/*        >*/}
+                    {/*            Reload*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</Col>*/}
                     <Col sm={2} xs={12} className="col-no-padding">
-                        <div className="board-actions">
-                            <div
-                                className="item menu"
-                                onClick={() => {
-                                    window.location.reload();
-                                }}
-                            >
-                                Reload
-                            </div>
-                        </div>
+                        <DarkMode/>
                     </Col>
                 </Row>
             </BootstrapContainer>

@@ -108,7 +108,7 @@ function Column(props) {
     };
 
     return (
-        <div className="column">
+        <div className="column toggle-dark-mode">
             <header className="column-drag-handle">
                 <div className="column-title">
                     <Form.Control
@@ -127,10 +127,10 @@ function Column(props) {
                 <div className="column-dropdown-actions">
                     <Dropdown>
                         <Dropdown.Toggle
-                            id="dropdown-basic"
-                            size="sm"
-                            className="dropdown-btn"
-                        ></Dropdown.Toggle>
+    id="dropdown-basic"
+    size="sm"
+    className="dropdown-btn"
+    />
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={handleOpenNewCardForm}>
                                 Add card
@@ -178,6 +178,7 @@ function Column(props) {
                             }
                         />
                     </div>
+
                 )}
             </div>
             <footer>
@@ -198,7 +199,9 @@ function Column(props) {
                             <i className="fa fa-trash icon" />
                         </span>
                     </div>
-                )}
+
+                )
+                }
                 {!openNewCardForm && (
                     <div
                         className="footer-action"
@@ -208,13 +211,15 @@ function Column(props) {
                         Add another card
                     </div>
                 )}
+
             </footer>
+
             <ConfirmModal
-                show={showConfirmModal}
-                onAction={onConfirmModalAction}
-                title={"Remove column"}
-                content={`Are you sure to remove <strong>${column.title}</strong> ! <br/> All related cards will also be remove!`}
-            ></ConfirmModal>
+    show={showConfirmModal}
+    onAction={onConfirmModalAction}
+    title={"Remove column"}
+    content={`Are you sure to remove <strong>${column.title}</strong> ! <br/> All related cards will also be remove!`}
+    />
         </div>
     );
 }

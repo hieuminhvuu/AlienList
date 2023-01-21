@@ -101,7 +101,7 @@ function Card(props) {
     };
 
     return (
-        <div className="card-item" style={{ display: showCard }}>
+        <div className="card-item toggle-dark-mode" style={{ display: showCard }}>
             {card.cover && (
                 <img
                     onMouseDown={(e) => e.preventDefault()}

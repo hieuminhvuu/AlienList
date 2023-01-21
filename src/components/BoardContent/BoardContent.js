@@ -155,7 +155,7 @@ function BoardContent() {
     };
 
     return (
-        <div className="board-content">
+        <div className="board-content toggle-dark-mode">
             <Container
                 orientation="horizontal"
                 onDrop={onColumnDrop}

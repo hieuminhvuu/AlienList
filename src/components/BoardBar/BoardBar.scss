@@ -1,4 +1,4 @@
-@import '_setting.scss';
+@import '../../_setting.scss';
 
 
 .navbar-board{
@@ -8,7 +8,6 @@
     padding: 0 ($gap * 2);
     display: flex;
     align-items: center;
-    background-color: $board-bg-color;
     color: aliceblue;
     .alien-trello-container {
         max-width: 100%;
@@ -26,45 +25,16 @@
                 }
             }
             div.item {
-                padding: 6px 10px;
+                padding: 6px 6px;
                 background-color: rgba(255, 255, 255, 0.3);
                 border-radius: 3px;
+                img.date_img {
+                    height: 7%;
+                    width: 7%;
+                }
                 &:hover {
                     cursor: pointer;
                     background-color: rgba(255, 255, 255, 0.4);
-                }
-                &.member-avatar {
-                    padding: 0;
-                    background-color: transparent;
-                    display: inline-flex;
-                    justify-content: center;
-                    >* {
-                        margin-right: 2px;
-                    }
-                    img {
-                        width: 28px;
-                        height: 28px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        border: 0;
-                        &:hover {
-                            filter: brightness(120%);
-                        }
-                    }
-                    span {
-                        padding: 5px 8px;
-                        background-color: rgba(255, 255, 255, 0.3);
-                        &:hover {
-                            background-color: rgba(255, 255, 255, 0.4);
-                        }
-                        &.more-members {
-                            border-radius: 50%;
-                        }
-                        &.invite {
-                            margin-left: 10px;
-                            border-radius: 3px;
-                        }
-                    }
                 }
             }
         }
