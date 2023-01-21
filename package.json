@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^13.4.0",
     "sass": "^1.55.0"
   }
 }
