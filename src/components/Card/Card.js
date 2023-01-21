@@ -124,32 +124,32 @@ function Card(props) {
                     {showActiveIcon && (
                         <div>
                             <i
-                                className="fa fa-pencil update"
-                                role="button"
-                                onClick={toggleShowUpdateCover}
-                            ></i>
+    className="fa fa-pencil update"
+    role="button"
+    onClick={toggleShowUpdateCover}
+    />
                             <i
-                                className="fa fa-trash-o delete"
-                                role="button"
-                                onClick={toggleShowConfirmModal}
-                            ></i>
+    className="fa fa-trash-o delete"
+    role="button"
+    onClick={toggleShowConfirmModal}
+    />
                         </div>
                     )}
                     {!showActiveIcon && (
                         <i
-                            className="fa fa-ellipsis-h menu"
-                            role="button"
-                            onClick={toggleShowActionIcon}
-                        ></i>
+    className="fa fa-ellipsis-h menu"
+    role="button"
+    onClick={toggleShowActionIcon}
+    />
                     )}
                 </div>
             </div>
             <ConfirmModal
-                show={showConfirmModal}
-                onAction={onConfirmModalAction}
-                title={"Remove card"}
-                content={`Are you sure to remove  ?`}
-            ></ConfirmModal>
+    show={showConfirmModal}
+    onAction={onConfirmModalAction}
+    title={"Remove card"}
+    content={`Are you sure to remove  ?`}
+    />
             <Modal
                 backdrop="static"
                 keyboard={false}
@@ -187,18 +187,18 @@ function Card(props) {
                     <div>
                         <Form.Label>Update title</Form.Label>
                         <Form.Control
-                            className="form-update-title"
-                            value={cardTitle}
-                            onChange={(e) => {
-                                setCardTitle(e.target.value);
-                            }}
-                        ></Form.Control>
+    className="form-update-title"
+    value={cardTitle}
+    onChange={(e) => {
+        setCardTitle(e.target.value);
+    }}
+    />
                         <Button variant="primary" onClick={updateCardTitle}>
                             Update title
                         </Button>
                     </div>
                 </Modal.Body>
-                <Modal.Footer></Modal.Footer>
+                <Modal.Footer/>
             </Modal>
         </div>
     );

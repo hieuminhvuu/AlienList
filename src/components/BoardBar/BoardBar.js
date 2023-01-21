@@ -12,7 +12,7 @@ function BoardBar() {
                         <div className="board-info">
                             <div className="item board-logo-icon">
                                 <i className="fa fa-coffee" />
-                                &nbsp;&nbsp;<strong>WordSpace</strong>
+                                &nbsp;&nbsp;<strong>WorkSpace</strong>
                             </div>
                             <div className="divider"></div>
                             <div className="item board-type">Private</div>

@@ -1,26 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Column from "components/Column/Column";
-import { mapOrder } from "utilities/sorts";
+import {mapOrder} from "utilities/sorts";
 import "./BoardContent.scss";
-import { isEmpty, cloneDeep } from "lodash";
-import { Container, Draggable } from "react-smooth-dnd";
-import { applyDrag } from "utilities/dragDrop";
-import {
-    Container as BootstrapContainer,
-    Row,
-    Col,
-    Form,
-    Button,
-} from "react-bootstrap";
-import {
-    fetchBoardDetails,
-    createNewColumn,
-    updateBoard,
-    updateColumn,
-    updateCard,
-    getAllColumn,
-} from "actions/ApiCall";
-import { useParams } from "react-router-dom";
+import {cloneDeep, isEmpty} from "lodash";
+import {Container, Draggable} from "react-smooth-dnd";
+import {applyDrag} from "utilities/dragDrop";
+import {Button, Col, Container as BootstrapContainer, Form, Row,} from "react-bootstrap";
+import {createNewColumn, fetchBoardDetails, updateBoard, updateCard, updateColumn,} from "actions/ApiCall";
+import {useParams} from "react-router-dom";
 
 function BoardContent() {
     let { id } = useParams();
@@ -39,8 +26,7 @@ function BoardContent() {
     const openNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
 
     useEffect(() => {
-        const boardId = id;
-        fetchBoardDetails(boardId).then((board) => {
+        fetchBoardDetails(id).then((board) => {
             setBoard(board);
             setColumns(mapOrder(board.columns, board.columnOrder, "_id"));
         });
@@ -76,7 +62,7 @@ function BoardContent() {
         setBoard(newBoard);
 
         // Call api update columnOrder in board details.
-        updateBoard(newBoard._id, newBoard).catch((error) => {
+        updateBoard(newBoard._id, newBoard).catch(() => {
             setColumns(columns);
             setBoard(board);
         });
