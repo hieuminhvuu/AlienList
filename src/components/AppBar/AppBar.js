@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
+import DarkMode from "../AccountData/DarkMode";
 
 function AppBar() {
     let history = useHistory();
@@ -39,7 +40,9 @@ function AppBar() {
                         TO-DO-LIST
                     </Col>
                     <Col sm={5} xs={12} className="col-no-padding right">
+
                         <div className="user-actions">
+                            <DarkMode/>
                             <Dropdown className="dropdown">
                                 <Dropdown.Toggle
                                     id="dropdown-basic"

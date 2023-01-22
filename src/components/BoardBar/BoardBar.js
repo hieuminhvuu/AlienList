@@ -59,7 +59,7 @@ function BoardBar() {
                     {/*    </div>*/}
                     {/*</Col>*/}
                     <Col sm={2} xs={12} className="col-no-padding">
-                        <DarkMode/>
+
                     </Col>
                 </Row>
             </BootstrapContainer>
