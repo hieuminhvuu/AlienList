@@ -13,7 +13,7 @@ const DashBoard = () => {
     };
 
     return (
-        <div className="dashboard toggle-dark-mode">
+        <div className="dashboard toggle-dark-mode toggle-dark-mode-background">
             <AppBar />
             <div>
                 <Container className="all-board-container" fluid>

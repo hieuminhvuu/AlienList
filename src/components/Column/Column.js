@@ -108,7 +108,7 @@ function Column(props) {
     };
 
     return (
-        <div className="column toggle-dark-mode">
+        <div className="column">
             <header className="column-drag-handle">
                 <div className="column-title">
                     <Form.Control

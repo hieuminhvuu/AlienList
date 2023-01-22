@@ -2,11 +2,17 @@
     --font-color: #333;
     --background-color: #0079bf;
     --link-color: cornflowerblue;
+    --background: url("../../assets/image/bgimgDb.jpg") no-repeat center center;
+    --background2: url("../../assets/image/2.jpg") no-repeat center center;
+    --font-color-card: #333 ;
 }
 [data-theme="dark"] {
     --font-color: #eee;
     --background-color: #333;
     --link-color: lightblue;
+    --background: #333;
+    --background2: #333;
+    --font-color-card: #333;
 }
 .toggle-dark-mode {
     background-color: var(--background-color);
@@ -15,6 +21,13 @@
 .toggle-dark-mode a {
     color: var(--link-color);
 }
+.toggle-dark-mode-background {
+    background: var(--background);
+}
+.toggle-dark-mode-background-2{
+    background: var(--background2);
+}
+
 .toggle-theme-wrapper {
     display: flex;
     flex-direction: row;
