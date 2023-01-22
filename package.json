@@ -23,6 +23,9 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "transformIgnorePatterns": ["node_modules\/(?!axios)"]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

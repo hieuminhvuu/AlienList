@@ -5,7 +5,6 @@ import DarkMode from "../components/AccountData/DarkMode";
 
 test("renders dark mode component", () => {
     render(<DarkMode />);
-    // 2
     const inputElement = screen.getByRole("checkbox");
     expect(inputElement).toBeInTheDocument();
 });

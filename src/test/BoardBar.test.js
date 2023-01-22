@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
-import AppBar from '../components/AppBar/AppBar';
+import BoardBar from "../components/BoardBar/BoardBar";
 
-test('test menu', () => {
-    render(<AppBar />);
-    const inputElement = screen.getByRole("My Profile");
+test('test board bar', () => {
+    render(<BoardBar />);
+    const inputElement = screen.getByText("2023, Jan 23");
     expect(inputElement).toBeInTheDocument();
 });
