@@ -3,14 +3,13 @@ import date_img from "../../assets/image/date.svg";
 
 import "./BoardBar.scss";
 import { Container as BootstrapContainer, Row, Col } from "react-bootstrap";
-import DarkMode from "../AccountData/DarkMode";
 
-const date: Date = new Date();
-const year: number = date.getFullYear();
-const month: number = date.getMonth();
-const day: number = date.getDate();
+const date = new Date();
+const year = date.getFullYear();
+const month = date.getMonth();
+const day = date.getDate();
 
-const monthName: string[] = [
+const monthName = [
     "January",
     "February",
     "March",

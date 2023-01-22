@@ -6,7 +6,6 @@
     height: $board-content-height;
     overflow-x: auto;
     overflow-y: hidden;
-    filter: brightness(95%);
     &:after {
         content: "";
         flex : 0 0 $gap;
