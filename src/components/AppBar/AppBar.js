@@ -40,7 +40,6 @@ function AppBar() {
                         TO-DO-LIST
                     </Col>
                     <Col sm={5} xs={12} className="col-no-padding right">
-
                         <div className="user-actions">
                             <DarkMode/>
                             <Dropdown className="dropdown">

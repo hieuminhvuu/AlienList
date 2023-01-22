@@ -22,7 +22,11 @@ const DashBoard = () => {
                             <h2>All Boards</h2>
                         </Col>
                         <Col xs={1}>
-                            <Button onClick={toggleShowAddModal}>+ Add</Button>
+                            <button className="btn custom-btn" onClick={toggleShowAddModal}>
+
+                                    + Add
+
+                            </button>
                         </Col>
                     </Row>
                     <AllBoard />
