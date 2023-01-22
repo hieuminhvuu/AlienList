@@ -18,6 +18,9 @@
     background-color: var(--background-color);
     color: var(--font-color);
 }
+.toggle-dark-mode-card {
+    color: var(--font-color-card);
+}
 .toggle-dark-mode a {
     color: var(--link-color);
 }
