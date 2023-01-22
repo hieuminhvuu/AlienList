@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
 import DarkMode from "../components/AccountData/DarkMode";
 
 test("renders dark mode component", () => {

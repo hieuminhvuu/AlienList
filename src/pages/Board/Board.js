@@ -5,7 +5,7 @@ import BoardContent from "components/BoardContent/BoardContent";
 
 const Board = () => {
     return (
-        <div className="trello-master">
+        <div className="trello-master toggle-dark-mode">
             <AppBar />
             <BoardBar />
             <BoardContent />
