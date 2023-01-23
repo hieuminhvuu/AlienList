@@ -13,7 +13,7 @@ const DashBoard = () => {
     };
 
     return (
-        <div className="dashboard">
+        <div className="dashboard toggle-dark-mode toggle-dark-mode-background">
             <AppBar />
             <div>
                 <Container className="all-board-container" fluid>
@@ -22,7 +22,11 @@ const DashBoard = () => {
                             <h2>All Boards</h2>
                         </Col>
                         <Col xs={1}>
-                            <Button onClick={toggleShowAddModal}>+ Add</Button>
+                            <button className="btn custom-btn" onClick={toggleShowAddModal}>
+
+                                    + Add
+
+                            </button>
                         </Col>
                     </Row>
                     <AllBoard />

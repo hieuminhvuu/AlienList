@@ -7,7 +7,6 @@
     font-size: 14px;
     line-height: 1.3em;
     height: 100vh;
-    background: url("../../assets/image/bgimgDb.jpg") no-repeat center center;
     background-size: cover;
     .all-board-container{
         width: 90%;
@@ -15,6 +14,36 @@
         h2 {
             font-weight: 900;
             color: white;
+        };
+        button {
+            margin: 20px;
+            outline: none;
+        }
+        .custom-btn {
+            width: 130px;
+            height: 40px;
+            padding: 10px 25px;
+            border: 2px solid #000;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: #800080;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* 1 */
+        .btn {
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: transparent;
+            box-shadow:
+                    -7px -7px 20px 0px #fff9,
+                    -4px -4px 5px 0px #fff9,
+                    7px 7px 20px 0px #0002,
+                    4px 4px 5px 0px #0001;
         }
     }
 }

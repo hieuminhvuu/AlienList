@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
+import DarkMode from "../AccountData/DarkMode";
+import MenuButton from "./MenuButton/MenuButton";
 
 function AppBar() {
     let history = useHistory();
@@ -40,37 +42,8 @@ function AppBar() {
                     </Col>
                     <Col sm={5} xs={12} className="col-no-padding right">
                         <div className="user-actions">
-                            <Dropdown className="dropdown">
-                                <Dropdown.Toggle
-                                    id="dropdown-basic"
-                                    size="sm"
-                                    className="dropdown-btn"
-                                >
-                                    <strong className="name-user">Menu</strong>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className="dropdown-menu">
-                                    <Dropdown.Item
-                                        onClick={() =>
-                                            history.push(`/dashboard`)
-                                        }
-                                    >
-                                        <i className="fa fa-list-alt"/>{" "}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Boards
-                                    </Dropdown.Item>
-                                    <hr />
-                                    <Dropdown.Item
-                                        onClick={() => history.push(`/profile`)}
-                                    >
-                                        <i className="fa fa-user-circle"/>{" "}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;My Profile
-                                    </Dropdown.Item>
-                                    <hr />
-                                    <Dropdown.Item onClick={logout}>
-                                        <i className="fa fa-sign-out" />{" "}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Log Out
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <DarkMode/>
+                            <MenuButton/>
                         </div>
                     </Col>
                 </Row>
